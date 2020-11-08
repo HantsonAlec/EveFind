@@ -11,11 +11,50 @@
 		<!-- Load Esri Leaflet Geocoder from CDN -->
 		<link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.3.3/dist/esri-leaflet-geocoder.css" integrity="sha512-IM3Hs+feyi40yZhDH6kV8vQMg4Fh20s9OzInIIAc4nx7aMYMfo+IenRUekoYsHZqGkREUgx0VvlEsgm7nCDW9g==" crossorigin="" />
 		<script src="https://unpkg.com/esri-leaflet-geocoder@2.3.3/dist/esri-leaflet-geocoder.js" integrity="sha512-HrFUyCEtIpxZloTgEKKMq4RFYhxjJkCiF5sDxuAokklOeZ68U2NPfh4MFtyIVWlsKtVbK5GD2/JzFyAfvT5ejA==" crossorigin=""></script>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 		<script src="script/app.js"></script>
 		<link rel="stylesheet" href="css/screen.css" />
-		<title>Document</title>
+		<title>EveFind</title>
 	</head>
 	<body>
 		<div id="mapid"></div>
+		<button class="c-getLocation js-getMyLocation">My location</button>
+		<div class="c-card js-card">
+			<button class="js-navigateTo">Navigation</button>
+			<object class="js-card_img" data="" type="image/svg+xml"></object>
+			<h1 class="js-card_title"></h1>
+			<div class="c-card_info">
+				<div class="c-card_info_address">
+					<span class="material-icons"> location_on </span>
+					<p class="js-card_info_addressTitle"></p>
+				</div>
+				<div class="c-card_info_contact">
+					<span class="material-icons"> phone </span>
+					<p class="js-card_info_contact"></p>
+				</div>
+				<div class="c-card_info_type">
+					<span class="material-icons"> power </span>
+					<p class="js-card_info_typeTitle"></p>
+				</div>
+			</div>
+			<div class="c-card_properties">
+				<h2 class="js-card_properties_available"></h2>
+				<div class="c-card_properties_icons">
+					<div class="c-card_property_icon js-card_properties_icons_membership">
+						<span class="material-icons"> card_membership </span>
+						<p class="c-card_properties_icons_membershipTitle">Membership</p>
+					</div>
+					<div class="c-card_property_icon js-card_properties_icons_pay">
+						<span class="material-icons"> credit_card </span>
+						<p class="c-card_properties_icons_payTitle">Pay at location</p>
+					</div>
+					<div class="c-card_property_icon js-card_properties_icons_charg">
+						<span class="material-icons"> battery_charging_full </span>
+						<p class="c-card_properties_icons_chargTitle">Fast charger</p>
+					</div>
+				</div>
+			</div>
+			<p class="js-card_comment"></p>
+		</div>
 	</body>
 </html>

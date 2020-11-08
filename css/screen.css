@@ -249,7 +249,14 @@ input::placeholder {
 /*------------------------------------*\
 #COMPONENTS
 \*------------------------------------*/
-
+/*
+    Component: card
+    ---
+    Chargingstation card
+*/
+.c-card {
+	display: none;
+}
 /*
     Component: Map
     ---
@@ -258,6 +265,14 @@ input::placeholder {
 #mapid {
 	height: 70vh;
 	width: auto;
+}
+/*
+    Component: Icon
+    ---
+    Property icons
+*/
+.c-card_property_icon {
+	opacity: 0.2;
 }
 /*------------------------------------*\
 #UTILITIES
