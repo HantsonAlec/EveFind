@@ -15,6 +15,35 @@
 	/* opacity */
 	--muted-opacity: 0.6;
 	/* transitions */
+	/* colors */
+	--color-alpha: #77dd77;
+	--color--alpha-dark: #009d1e;
+
+	--color-neutral-light: #ffffff;
+	--color-neutral: #808495;
+	--color-neutral-dark: #000000;
+
+	--global-color-error: #ff3333;
+	--global-color-error-transparent: #ff3333bf;
+	--global-color-error-x-transparent: #ff33334d;
+
+	--global-input-hover-borderColor: var(--global-color-neutral-light);
+	--global-input-focus-borderColor: var(--global-color-alpha);
+
+	/* Whitespace */
+	--global-baseline: 8px;
+	--global-whitespace-xxs: var(--global-baseline);
+	--global-whitespace-xs: calc(var(--global-baseline) * 2); /*16*/
+	--global-whitespace-sm: calc(var(--global-baseline) * 3); /*24*/
+	--global-whitespace-md: calc(var(--global-baseline) * 4); /*32*/
+	--global-whitespace-lg: calc(var(--global-baseline) * 5); /*40*/
+	--global-whitespace-xl: calc(var(--global-baseline) * 6); /*48*/
+	/* Shadows */
+	--global-boxshadow: 0px 2px 6px #000000;
+	/* border radius */
+
+	/* transitions */
+	--transition-alpha: 0.1s;
 }
 .is-night {
 	--color-front: var(--color-light);
@@ -40,7 +69,11 @@ html {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
-
+body,
+html {
+	margin: 0;
+	padding: 0;
+}
 *,
 *:before,
 *:after {
@@ -254,18 +287,134 @@ input::placeholder {
     ---
     Chargingstation card
 */
-.c-card {
+.c-getLocation {
 	display: none;
+}
+
+.c-modal {
+	border: 2px solid greenyellow;
+	justify-content: center;
+	align-items: center;
+	display: none;
+	position: fixed;
+	z-index: 1000;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgb(0, 0, 0);
+	background-color: rgba(0, 0, 0, 0.4);
+}
+.c-card {
+	border: 2px solid blue;
+	border-radius: 10px;
+	display: block;
+	/* z-index: 1000;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	margin: var(--global-baseline); */
+	width: 90vw;
+	height: 90vh;
+	max-width: 100%;
+	background-color: white;
+}
+/*
+    Component: card controls
+    ---
+    Chargingstation card controls
+*/
+.c-card__controls {
+	background-color: coral;
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	position: absolute;
+	margin: var(--global-baseline);
+}
+.c-card__nav-btn,
+.c-card__close-btn {
+	border: none;
+	padding: 8px;
+	display: flex;
+	border-radius: 10px;
+	background-color: rgba(0, 0, 0, 0.4);
+}
+.c-controls_icon {
+	color: var(--color-neutral-light);
+}
+/*
+    Component: card header
+    ---
+    Chargingstation card header
+*/
+
+.c-card__header {
+	border: 2px solid red;
+	height: 40vh;
+	position: relative;
+}
+.c-card__img {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+.c-card__title {
+	position: absolute;
+	bottom: 0%;
+	font-size: 2rem;
+	line-height: 3rem;
+	width: 100%;
+	color: var(--color-neutral-light);
+	backdrop-filter: blur(8px);
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.c-card__comment {
+	margin: var(--global-baseline);
+	width: 100%;
+}
+/*
+    Component: card info
+    ---
+    Chargingstation card info
+*/
+.c-card_info {
+	margin: var(--global-baseline);
+	margin-top: var(--global-whitespace-md);
+}
+.c-card_info_address,
+.c-card_info_contact,
+.c-card_info_type {
+	display: flex;
+}
+/*
+    Component: card properties
+    ---
+    Chargingstation card properties
+*/
+.c-card_properties {
+	text-align: center;
+}
+.c-card_properties_icons {
+	display: flex;
+	justify-content: space-evenly;
 }
 /*
     Component: Map
     ---
     Website map
 */
-#mapid {
-	height: 70vh;
-	width: auto;
+html,
+body,
+.c-map {
+	height: 100%;
+	width: 100%;
 }
+
 /*
     Component: Icon
     ---

@@ -1,11 +1,12 @@
 'use strict';
 
 let myLocationBtn,
-	navigateBtn = '';
+	navigateBtn,
+	closeBtn = '';
 const provider = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
 const copyright = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
 
-let map, layergroup, card, cardTitle, cardAddress, cardType, cardContact, cardAvailable, cardComment, cardImage, membership, pay, charg;
+let map, modal, layergroup, card, cardTitle, cardAddress, cardType, cardContact, cardAvailable, cardComment, cardImage, membership, pay, charg;
 let icons,
 	images = [];
 var searchControl, results, marker, popup;
@@ -24,16 +25,24 @@ const listenToPopUpClick = (chargingStation) => {
 	console.log(this.popup);
 	L.DomEvent.on(popup._contentNode, 'click', function () {
 		console.log('In click ');
-		card.style.display = 'block';
+		modal.style.display = 'flex';
 		showCard(chargingStation);
 	});
 };
 //--------------------LISTEN TO NAVIGATION CLICK--------------------
-const listenToNavigateClick = (latitude, longitude) => {
+const listenToControlsClick = (latitude, longitude) => {
 	navigateBtn.addEventListener('click', function () {
 		var url = 'http://www.google.com/maps/place/' + latitude + ',' + longitude;
 		window.open(url);
 	});
+	closeBtn.addEventListener('click', function () {
+		modal.style.display = 'none';
+	});
+	window.onclick = function (event) {
+		if (event.target == modal) {
+			modal.style.display = 'none';
+		}
+	};
 };
 //--------------------GET DATA FROM API--------------------
 const getAPI = async (lat, long) => {
@@ -101,7 +110,7 @@ const showCard = (chargingStation) => {
 			imgNum = 1;
 		}
 		cardImage.data = images[imgNum - 1];
-		listenToNavigateClick(chargingStation.AddressInfo.Latitude, chargingStation.AddressInfo.Longitude);
+		listenToControlsClick(chargingStation.AddressInfo.Latitude, chargingStation.AddressInfo.Longitude);
 	} catch (error) {
 		console.log('Data not provided');
 	}
@@ -187,7 +196,9 @@ document.addEventListener('DOMContentLoaded', function () {
 	console.log('init initiated!');
 	myLocationBtn = document.querySelector('.js-getMyLocation');
 	navigateBtn = document.querySelector('.js-navigateTo');
+	closeBtn = document.querySelector('.js-closeModal');
 	card = document.querySelector('.js-card');
+	modal = document.querySelector('.js-modal');
 	cardTitle = document.querySelector('.js-card_title');
 	cardAddress = document.querySelector('.js-card_info_addressTitle');
 	cardType = document.querySelector('.js-card_info_typeTitle');

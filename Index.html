@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
 		<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 		<!-- Load Esri Leaflet from CDN -->
@@ -17,44 +17,51 @@
 		<title>EveFind</title>
 	</head>
 	<body>
-		<div id="mapid"></div>
-		<button class="c-getLocation js-getMyLocation">My location</button>
-		<div class="c-card js-card">
-			<button class="js-navigateTo">Navigation</button>
-			<object class="js-card_img" data="" type="image/svg+xml"></object>
-			<h1 class="js-card_title"></h1>
-			<div class="c-card_info">
-				<div class="c-card_info_address">
-					<span class="material-icons"> location_on </span>
-					<p class="js-card_info_addressTitle"></p>
+		<div class="c-map js-map" id="mapid"></div>
+		<div class="c-modal js-modal">
+			<button class="c-getLocation js-getMyLocation">My location</button>
+			<div class="c-card js-card">
+				<div class="c-card__header">
+					<object class="js-card_img c-card__img" data="" type="image/svg+xml"></object>
+					<h1 class="js-card_title c-card__title"></h1>
+					<div class="c-card__controls">
+						<button class="c-card__nav-btn js-navigateTo"><span class="material-icons c-controls_icon"> near_me </span></button>
+						<button class="c-card__close-btn js-closeModal"><span class="material-icons c-controls_icon"> close </span></button>
+					</div>
 				</div>
-				<div class="c-card_info_contact">
-					<span class="material-icons"> phone </span>
-					<p class="js-card_info_contact"></p>
+				<div class="c-card_info">
+					<div class="c-card_info_address">
+						<span class="material-icons"> location_on </span>
+						<p class="js-card_info_addressTitle"></p>
+					</div>
+					<div class="c-card_info_contact">
+						<span class="material-icons"> phone </span>
+						<p class="js-card_info_contact"></p>
+					</div>
+					<div class="c-card_info_type">
+						<span class="material-icons"> power </span>
+						<p class="js-card_info_typeTitle"></p>
+					</div>
 				</div>
-				<div class="c-card_info_type">
-					<span class="material-icons"> power </span>
-					<p class="js-card_info_typeTitle"></p>
+				<div class="c-card_properties">
+					<h2 class="js-card_properties_available"></h2>
+					<div class="c-card_properties_icons">
+						<div class="c-card_property_icon js-card_properties_icons_membership">
+							<span class="material-icons"> card_membership </span>
+							<p class="c-card_properties_icons_membershipTitle">Membership</p>
+						</div>
+						<div class="c-card_property_icon js-card_properties_icons_pay">
+							<span class="material-icons"> credit_card </span>
+							<p class="c-card_properties_icons_payTitle">Pay at location</p>
+						</div>
+						<div class="c-card_property_icon js-card_properties_icons_charg">
+							<span class="material-icons"> battery_charging_full </span>
+							<p class="c-card_properties_icons_chargTitle">Fast charger</p>
+						</div>
+					</div>
 				</div>
+				<p class="js-card_comment c-card__comment"></p>
 			</div>
-			<div class="c-card_properties">
-				<h2 class="js-card_properties_available"></h2>
-				<div class="c-card_properties_icons">
-					<div class="c-card_property_icon js-card_properties_icons_membership">
-						<span class="material-icons"> card_membership </span>
-						<p class="c-card_properties_icons_membershipTitle">Membership</p>
-					</div>
-					<div class="c-card_property_icon js-card_properties_icons_pay">
-						<span class="material-icons"> credit_card </span>
-						<p class="c-card_properties_icons_payTitle">Pay at location</p>
-					</div>
-					<div class="c-card_property_icon js-card_properties_icons_charg">
-						<span class="material-icons"> battery_charging_full </span>
-						<p class="c-card_properties_icons_chargTitle">Fast charger</p>
-					</div>
-				</div>
-			</div>
-			<p class="js-card_comment"></p>
 		</div>
 	</body>
 </html>
