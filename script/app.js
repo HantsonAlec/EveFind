@@ -95,7 +95,7 @@ const showCard = (chargingStation) => {
 			}
 		});
 		cardType.innerHTML = chargingStation.Connections[0].Level.Title;
-		cardAvailable.innerHTML = `${NumOfChargers} chargers available`;
+		cardAvailable.innerHTML = `${NumOfChargers} <span class="c-app__slogan__coloured">chargers</span> available`;
 		cardComment.innerHTML = chargingStation.GeneralComments;
 		let props = [chargingStation.UsageType.IsMembershipRequired, chargingStation.UsageType.IsPayAtLocation, chargingStation.Connections[0].Level.IsFastChargeCapable];
 		for (let i = 0; i < props.length; i++) {

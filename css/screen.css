@@ -292,7 +292,6 @@ input::placeholder {
 }
 
 .c-modal {
-	border: 2px solid greenyellow;
 	justify-content: center;
 	align-items: center;
 	display: none;
@@ -306,7 +305,6 @@ input::placeholder {
 	background-color: rgba(0, 0, 0, 0.4);
 }
 .c-card {
-	border: 2px solid blue;
 	border-radius: 10px;
 	display: block;
 	/* z-index: 1000;
@@ -326,12 +324,13 @@ input::placeholder {
     Chargingstation card controls
 */
 .c-card__controls {
-	background-color: coral;
 	display: flex;
-	width: 100%;
+	width: auto;
 	justify-content: space-between;
 	position: absolute;
-	margin: var(--global-baseline);
+	top: 8px;
+	left: 8px;
+	right: 8px;
 }
 .c-card__nav-btn,
 .c-card__close-btn {
@@ -351,7 +350,6 @@ input::placeholder {
 */
 
 .c-card__header {
-	border: 2px solid red;
 	height: 40vh;
 	position: relative;
 }
@@ -364,7 +362,7 @@ input::placeholder {
 }
 .c-card__title {
 	position: absolute;
-	bottom: 0%;
+	bottom: -8%;
 	font-size: 2rem;
 	line-height: 3rem;
 	width: 100%;
@@ -375,8 +373,8 @@ input::placeholder {
 
 .c-card__comment {
 	margin: var(--global-baseline);
-	width: 100%;
 }
+
 /*
     Component: card info
     ---
@@ -396,6 +394,9 @@ input::placeholder {
     ---
     Chargingstation card properties
 */
+.c-app__slogan__coloured {
+	color: var(--color--alpha-dark);
+}
 .c-card_properties {
 	text-align: center;
 }
