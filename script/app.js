@@ -6,7 +6,7 @@ let myLocationBtn,
 const provider = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
 const copyright = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
 
-let map, modal, layergroup, loader, card, cardTitle, cardAddress, cardType, cardContact, cardAvailable, cardComment, cardImage, membership, pay, charg;
+let map, modal, layergroup, loader, card, cardTitle, content, cardAddress, cardType, cardContact, cardAvailable, cardComment, cardImage, membership, pay, charg;
 let icons,
 	images,
 	props = [];
@@ -148,7 +148,8 @@ const chargerMarker = (chargingStation) => {
 
 	marker = L.marker(chargingCoords, { icon: chargerLocationIcon }).addTo(layergroup);
 	marker.addEventListener('click', function () {
-		popup = L.popup().setLatLng([chargingStation.AddressInfo.Latitude, chargingStation.AddressInfo.Longitude]).setContent(chargingStation.AddressInfo.Title).openOn(map);
+		content = '<p class="c-popup">' + chargingStation.AddressInfo.Title + '<span class="material-icons">keyboard_arrow_up</span></p>';
+		popup = L.popup().setLatLng([chargingStation.AddressInfo.Latitude, chargingStation.AddressInfo.Longitude]).setContent(content).openOn(map);
 		listenToPopUpClick(chargingStation);
 	});
 };
