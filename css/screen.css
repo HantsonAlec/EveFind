@@ -307,16 +307,26 @@ input::placeholder {
 .c-card {
 	border-radius: 10px;
 	display: block;
-	/* z-index: 1000;
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	margin: var(--global-baseline); */
 	width: 90vw;
 	height: 90vh;
 	max-width: 100%;
 	background-color: white;
+	overflow: scroll;
+}
+@media (min-width: 768px) {
+	.c-card {
+		width: 70vw;
+	}
+}
+@media (min-width: 1200px) {
+	.c-card__main {
+		display: grid;
+		margin: var(--global-whitespace-xs) var(--global-baseline) 0px var(--global-baseline);
+		grid-template-columns: 50%, 50%;
+	}
+	.c-card {
+		width: 60vw;
+	}
 }
 /*
     Component: card controls
@@ -353,16 +363,28 @@ input::placeholder {
 	height: 40vh;
 	position: relative;
 }
+@media (min-width: 768px) {
+	.c-card__header {
+		height: 50vh;
+	}
+}
+@media (min-width: 1200px) {
+	.c-card__header {
+		height: 60vh;
+	}
+}
+
 .c-card__img {
 	position: absolute;
 	left: 0;
 	top: 0;
 	width: 100%;
 	height: 100%;
+	border-radius: 10px;
 }
 .c-card__title {
 	position: absolute;
-	bottom: -8%;
+	bottom: -5%;
 	font-size: 2rem;
 	line-height: 3rem;
 	width: 100%;
@@ -371,23 +393,27 @@ input::placeholder {
 	background-color: rgba(0, 0, 0, 0.4);
 }
 
-.c-card__comment {
-	margin: var(--global-baseline);
+/*
+    Component: card main
+    ---
+    Chargingstation card info
+*/
+.c-card__main {
+	margin: var(--global-whitespace-xs) var(--global-baseline) 0px var(--global-baseline);
 }
-
 /*
     Component: card info
     ---
     Chargingstation card info
 */
-.c-card_info {
-	margin: var(--global-baseline);
-	margin-top: var(--global-whitespace-md);
-}
+
 .c-card_info_address,
 .c-card_info_contact,
 .c-card_info_type {
 	display: flex;
+}
+.c-card__comment {
+	margin: var(--global-baseline);
 }
 /*
     Component: card properties
@@ -403,6 +429,12 @@ input::placeholder {
 .c-card_properties_icons {
 	display: flex;
 	justify-content: space-evenly;
+}
+@media (min-width: 1200px) {
+	.c-card_properties {
+		grid-column: 2;
+		margin-right: var(--global-baseline);
+	}
 }
 /*
     Component: Map
@@ -424,6 +456,72 @@ body,
 .c-card_property_icon {
 	opacity: 0.2;
 }
+/*
+    Component: Loader
+    ---
+    Website loader
+*/
+.c-loading-screen {
+	opacity: 1;
+	transition: opacity 1.5s ease;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 100vw;
+	height: 100vh;
+	background-color: var(--color-neutral-light);
+	transform: translate(-50%, -50%);
+	z-index: 1000;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.c-loader {
+	height: 80px;
+	animation-name: bounce;
+	animation-timing-function: linear;
+	transform: translate(-50%, -50%);
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+}
+.c-loader__shadow {
+	animation-name: shadow;
+	animation-timing-function: linear;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	background: radial-gradient(50% 50%, #000 0%, rgba(255, 255, 255, 0) 100%);
+	height: 20px;
+	width: 40px;
+}
+.c-loader__text {
+	margin: var(--global-whitespace-sm);
+	font-size: 1.5rem;
+	text-align: center;
+}
+@keyframes bounce {
+	0% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-20px);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
+@keyframes shadow {
+	0% {
+		background: radial-gradient(50% 50%, #000 10%, rgba(255, 255, 255, 0) 100%);
+	}
+	50% {
+		background: radial-gradient(50% 50%, #000 1%, rgba(255, 255, 255, 0) 100%);
+	}
+	100% {
+		background: radial-gradient(50% 50%, #000 10%, rgba(255, 255, 255, 0) 100%);
+	}
+}
+
 /*------------------------------------*\
 #UTILITIES
 \*------------------------------------*/

@@ -29,39 +29,55 @@
 						<button class="c-card__close-btn js-closeModal"><span class="material-icons c-controls_icon"> close </span></button>
 					</div>
 				</div>
-				<div class="c-card_info">
-					<div class="c-card_info_address">
-						<span class="material-icons"> location_on </span>
-						<p class="js-card_info_addressTitle"></p>
-					</div>
-					<div class="c-card_info_contact">
-						<span class="material-icons"> phone </span>
-						<p class="js-card_info_contact"></p>
-					</div>
-					<div class="c-card_info_type">
-						<span class="material-icons"> power </span>
-						<p class="js-card_info_typeTitle"></p>
-					</div>
-				</div>
-				<div class="c-card_properties">
-					<h2 class="js-card_properties_available"></h2>
-					<div class="c-card_properties_icons">
-						<div class="c-card_property_icon js-card_properties_icons_membership">
-							<span class="material-icons"> card_membership </span>
-							<p class="c-card_properties_icons_membershipTitle">Membership</p>
+				<div class="c-card__main">
+					<div class="c-card_info">
+						<div class="c-card_info_address">
+							<span class="material-icons"> location_on </span>
+							<p class="js-card_info_addressTitle"></p>
 						</div>
-						<div class="c-card_property_icon js-card_properties_icons_pay">
-							<span class="material-icons"> credit_card </span>
-							<p class="c-card_properties_icons_payTitle">Pay at location</p>
+						<div class="c-card_info_contact">
+							<span class="material-icons"> phone </span>
+							<p class="js-card_info_contact"></p>
 						</div>
-						<div class="c-card_property_icon js-card_properties_icons_charg">
-							<span class="material-icons"> battery_charging_full </span>
-							<p class="c-card_properties_icons_chargTitle">Fast charger</p>
+						<div class="c-card_info_type">
+							<span class="material-icons"> power </span>
+							<p class="js-card_info_typeTitle"></p>
+						</div>
+					</div>
+					<div class="c-card_properties">
+						<h2 class="js-card_properties_available"></h2>
+						<div class="c-card_properties_icons">
+							<div class="c-card_property_icon js-card_properties_icons_membership">
+								<span class="material-icons"> card_membership </span>
+								<p class="c-card_properties_icons_membershipTitle">Membership</p>
+							</div>
+							<div class="c-card_property_icon js-card_properties_icons_pay">
+								<span class="material-icons"> credit_card </span>
+								<p class="c-card_properties_icons_payTitle">Pay at location</p>
+							</div>
+							<div class="c-card_property_icon js-card_properties_icons_charg">
+								<span class="material-icons"> battery_charging_full </span>
+								<p class="c-card_properties_icons_chargTitle">Fast charger</p>
+							</div>
 						</div>
 					</div>
 				</div>
 				<p class="js-card_comment c-card__comment"></p>
 			</div>
+		</div>
+		<div class="c-loading-screen js-loader">
+			<svg class="c-loader" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 74.12 110.79">
+				<defs>
+					<style>
+						.a {
+							fill: #7d7;
+						}
+					</style>
+				</defs>
+				<path class="a" d="M74.08,35.54A37.06,37.06,0,1,0,10.52,62.92l26.54,47.87L63.6,62.9A36.89,36.89,0,0,0,74.08,35.54ZM33,52.41l3.77-16.8-10.64-.18L41.93,11.88,36.57,28.43H48Z" />
+			</svg>
+			<div class="c-loader__shadow"></div>
+			<p class="c-loader__text">We are getting you the best charging spots!</p>
 		</div>
 	</body>
 </html>

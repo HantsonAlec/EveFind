@@ -6,9 +6,10 @@ let myLocationBtn,
 const provider = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
 const copyright = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
 
-let map, modal, layergroup, card, cardTitle, cardAddress, cardType, cardContact, cardAvailable, cardComment, cardImage, membership, pay, charg;
+let map, modal, layergroup, loader, card, cardTitle, cardAddress, cardType, cardContact, cardAvailable, cardComment, cardImage, membership, pay, charg;
 let icons,
-	images = [];
+	images,
+	props = [];
 var searchControl, results, marker, popup;
 //--------------------LISTEN TO LOCATION CLICK--------------------
 const listenToLocationClick = () => {
@@ -97,14 +98,22 @@ const showCard = (chargingStation) => {
 		cardType.innerHTML = chargingStation.Connections[0].Level.Title;
 		cardAvailable.innerHTML = `${NumOfChargers} <span class="c-app__slogan__coloured">chargers</span> available`;
 		cardComment.innerHTML = chargingStation.GeneralComments;
-		let props = [chargingStation.UsageType.IsMembershipRequired, chargingStation.UsageType.IsPayAtLocation, chargingStation.Connections[0].Level.IsFastChargeCapable];
-		for (let i = 0; i < props.length; i++) {
-			if (props[i] == true) {
-				icons[i].style.opacity = '1';
-			} else {
+		if (chargingStation.UsageType != null) {
+			props = [chargingStation.UsageType.IsMembershipRequired, chargingStation.UsageType.IsPayAtLocation, chargingStation.Connections[0].Level.IsFastChargeCapable];
+			for (let i = 0; i < props.length; i++) {
+				if (props[i] == true) {
+					icons[i].style.opacity = '1';
+				} else {
+					icons[i].style.opacity = '0.2';
+				}
+			}
+		} else {
+			console.log('in else');
+			for (let i = 0; i < props.length; i++) {
 				icons[i].style.opacity = '0.2';
 			}
 		}
+
 		let imgNum = chargingStation.Connections[0].LevelID;
 		if (imgNum == null) {
 			imgNum = 1;
@@ -112,11 +121,15 @@ const showCard = (chargingStation) => {
 		cardImage.data = images[imgNum - 1];
 		listenToControlsClick(chargingStation.AddressInfo.Latitude, chargingStation.AddressInfo.Longitude);
 	} catch (error) {
-		console.log('Data not provided');
+		console.log('Data not provided', error);
 	}
 };
 //--------------------SHOW DATA FROM API--------------------
 const showResult = (chargingStations) => {
+	loader.style.opacity = '0';
+	setTimeout(function () {
+		loader.style.display = 'none';
+	}, 1500);
 	chargingStations.forEach((chargingStation) => {
 		chargerMarker(chargingStation);
 	});
@@ -127,7 +140,7 @@ const chargerMarker = (chargingStation) => {
 		iconUrl: './img/EvLocationIcon.png',
 		iconSize: [24, 32], // size of the icon
 		iconAnchor: [24, 32], // point of the icon which will correspond to marker's location
-		popupAnchor: [-12, -20], // point from which the popup should open relative to the iconAnchor
+		popupAnchor: [-12, -16], // point from which the popup should open relative to the iconAnchor
 	});
 	let chargingCoords = [];
 	chargingCoords.push(chargingStation.AddressInfo.Latitude);
@@ -138,8 +151,6 @@ const chargerMarker = (chargingStation) => {
 		popup = L.popup().setLatLng([chargingStation.AddressInfo.Latitude, chargingStation.AddressInfo.Longitude]).setContent(chargingStation.AddressInfo.Title).openOn(map);
 		listenToPopUpClick(chargingStation);
 	});
-
-	// popup = marker.bindPopup(`${chargingStation.AddressInfo.Title}`);
 };
 
 //--------------------SHOW USER LOCATION ON MAP--------------------
@@ -161,6 +172,7 @@ const showPosition = (position) => {
 	arr_coords.push(position.coords.latitude);
 	arr_coords.push(position.coords.longitude);
 	layergroup.clearLayers();
+
 	let marker = L.marker(arr_coords, { icon: MyLocationIcon }).addTo(layergroup);
 	marker.bindPopup(`YOU ARE HERE`);
 	//api ophalen
@@ -171,6 +183,8 @@ const showError = (error) => {
 	map.setView([51.041028, 3.398512], 10);
 	searchOnMap();
 	layergroup = L.layerGroup().addTo(map);
+	loader.style.opacity = '0';
+	loader.style.display = none;
 	switch (error.code) {
 		case error.PERMISSION_DENIED:
 			console.log('User denied the request for Geolocation.');
@@ -197,6 +211,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	myLocationBtn = document.querySelector('.js-getMyLocation');
 	navigateBtn = document.querySelector('.js-navigateTo');
 	closeBtn = document.querySelector('.js-closeModal');
+	loader = document.querySelector('.js-loader');
 	card = document.querySelector('.js-card');
 	modal = document.querySelector('.js-modal');
 	cardTitle = document.querySelector('.js-card_title');
