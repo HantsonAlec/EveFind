@@ -1,12 +1,9 @@
 'use strict';
 
-let myLocationBtn,
-	navigateBtn,
-	closeBtn = '';
 const provider = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
-const copyright = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
+const copyright = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a> &copy; <a href="https://www.freevector.com">FreeVector.com</a>';
 
-let map, modal, layergroup, loader, card, cardTitle, content, cardAddress, cardType, cardContact, cardAvailable, cardComment, cardImage, membership, pay, charg;
+let myLocationBtn, navigateBtn, closeBtn, closeError, map, modal, layergroup, loader, locationError, card, cardTitle, content, cardAddress, cardType, cardContact, cardAvailable, cardComment, cardImage, membership, pay, charg;
 let icons,
 	images,
 	props = [];
@@ -14,6 +11,8 @@ var searchControl, results, marker, popup;
 //--------------------LISTEN TO LOCATION CLICK--------------------
 const listenToLocationClick = () => {
 	myLocationBtn.addEventListener('click', function () {
+		loader.style.display = 'flex';
+		loader.style.opacity = '1';
 		results.clearLayers();
 		layergroup.clearLayers();
 		getLocation();
@@ -21,7 +20,6 @@ const listenToLocationClick = () => {
 };
 //--------------------LISTEN TO POPUP CLICK--------------------
 const listenToPopUpClick = (chargingStation) => {
-	console.log('okooo');
 	console.log(popup);
 	console.log(this.popup);
 	L.DomEvent.on(popup._contentNode, 'click', function () {
@@ -36,19 +34,24 @@ const listenToControlsClick = (latitude, longitude) => {
 		var url = 'http://www.google.com/maps/place/' + latitude + ',' + longitude;
 		window.open(url);
 	});
+	closeError.addEventListener('click', function () {
+		locationError.style.display = 'none';
+	});
 	closeBtn.addEventListener('click', function () {
+		console.log('close btn');
 		modal.style.display = 'none';
 	});
 	window.onclick = function (event) {
-		if (event.target == modal) {
+		if (event.target == modal || event.target == locationError) {
 			modal.style.display = 'none';
+			locationError.style.display = 'none';
 		}
 	};
 };
 //--------------------GET DATA FROM API--------------------
 const getAPI = async (lat, long) => {
 	const key = '93eb5062-5ed9-4a66-83a6-b5189eb8e74f';
-	const chargingStations = await fetch(`https://api.openchargemap.io/v3/poi/?key=${key}&latitude=${lat}&longitude=${long}&distance=20&distanceunit=KM`)
+	const chargingStations = await fetch(`https://api.openchargemap.io/v3/poi/?key=${API_KEY}&latitude=${lat}&longitude=${long}&distance=20&distanceunit=KM`)
 		.then((r) => r.json())
 		.catch((err) => console.error('An error occured ', err));
 	console.log(chargingStations);
@@ -78,28 +81,35 @@ const searchOnMap = () => {
 //--------------------SHOW DATA FROM SELECTED STATION--------------------
 const showCard = (chargingStation) => {
 	try {
+		let fastCharging = false;
+		let imgNum = 1;
+		let NumOfChargers = 0;
+		console.log(chargingStation);
 		cardTitle.innerHTML = chargingStation.AddressInfo.Title;
 		cardAddress.innerHTML = `${chargingStation.AddressInfo.AddressLine1} , ${chargingStation.AddressInfo.Postcode} ${chargingStation.AddressInfo.Town} ${chargingStation.AddressInfo.Country.ISOCode}`;
-		if (chargingStation.AddressInfo.ContactTelephone1 != null) {
-			cardContact.innerHTML = chargingStation.AddressInfo.ContactTelephone1;
-		} else {
-			cardContact.innerHTML = 'Number unknown';
-		}
 
-		let NumOfChargers = 0;
-		chargingStation.Connections.forEach((connection) => {
-			console.log(connection);
-			if (connection.Quantity != null) {
-				NumOfChargers += connection.Quantity;
-			} else {
-				NumOfChargers += 1;
-			}
-		});
-		cardType.innerHTML = chargingStation.Connections[0].Level.Title;
+		//If json is null or undifined then number unknown
+		cardContact.innerHTML = chargingStation.AddressInfo.ContactTelephone1 || 'Number unknown';
+		if (chargingStation.Connections.length > 0) {
+			chargingStation.Connections.forEach((connection) => {
+				if (connection.Quantity != null) {
+					NumOfChargers += connection.Quantity;
+				} else {
+					NumOfChargers += 1;
+				}
+			});
+			cardType.innerHTML = chargingStation.Connections[0].Level.Title;
+			fastCharging = chargingStation.Connections[0].Level.IsFastChargeCapable;
+			imgNum = chargingStation.Connections[0].LevelID || 1;
+		} else {
+			cardType.innerHTML = 'Charging level unknown';
+			NumOfChargers = chargingStation.NumberOfPoints;
+		}
 		cardAvailable.innerHTML = `${NumOfChargers} <span class="c-app__slogan__coloured">chargers</span> available`;
-		cardComment.innerHTML = chargingStation.GeneralComments;
+		cardComment.innerHTML = chargingStation.GeneralComments || chargingStation.AddressInfo.AccessComments || 'No extra charger information';
+		//Check if usage types available
 		if (chargingStation.UsageType != null) {
-			props = [chargingStation.UsageType.IsMembershipRequired, chargingStation.UsageType.IsPayAtLocation, chargingStation.Connections[0].Level.IsFastChargeCapable];
+			props = [chargingStation.UsageType.IsMembershipRequired, chargingStation.UsageType.IsPayAtLocation, fastCharging];
 			for (let i = 0; i < props.length; i++) {
 				if (props[i] == true) {
 					icons[i].style.opacity = '1';
@@ -114,10 +124,6 @@ const showCard = (chargingStation) => {
 			}
 		}
 
-		let imgNum = chargingStation.Connections[0].LevelID;
-		if (imgNum == null) {
-			imgNum = 1;
-		}
 		cardImage.data = images[imgNum - 1];
 		listenToControlsClick(chargingStation.AddressInfo.Latitude, chargingStation.AddressInfo.Longitude);
 	} catch (error) {
@@ -181,11 +187,11 @@ const showPosition = (position) => {
 };
 //--------------------LOG ERROR WHEN GETTING LOCATION--------------------
 const showError = (error) => {
-	map.setView([51.041028, 3.398512], 10);
 	searchOnMap();
-	layergroup = L.layerGroup().addTo(map);
+	locationError.style.display = 'block';
+	listenToControlsClick();
 	loader.style.opacity = '0';
-	loader.style.display = none;
+	loader.style.display = 'none';
 	switch (error.code) {
 		case error.PERMISSION_DENIED:
 			console.log('User denied the request for Geolocation.');
@@ -203,7 +209,10 @@ const showError = (error) => {
 };
 //--------------------INITIALIZE MAP--------------------
 const initMap = () => {
+	console.log('manp initiate');
 	map = L.map('mapid').setView([51.041028, 3.398512], 10);
+	layergroup = L.layerGroup().addTo(map);
+	L.tileLayer(provider, { attribution: copyright }).addTo(map);
 	searchControl = L.esri.Geocoding.geosearch().addTo(map);
 };
 //--------------------DOMCONTENTLOADED--------------------
@@ -212,9 +221,11 @@ document.addEventListener('DOMContentLoaded', function () {
 	myLocationBtn = document.querySelector('.js-getMyLocation');
 	navigateBtn = document.querySelector('.js-navigateTo');
 	closeBtn = document.querySelector('.js-closeModal');
+	closeError = document.querySelector('.js-closeError');
 	loader = document.querySelector('.js-loader');
 	card = document.querySelector('.js-card');
 	modal = document.querySelector('.js-modal');
+	locationError = document.querySelector('.js-location__error');
 	cardTitle = document.querySelector('.js-card_title');
 	cardAddress = document.querySelector('.js-card_info_addressTitle');
 	cardType = document.querySelector('.js-card_info_typeTitle');
@@ -226,7 +237,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	pay = document.querySelector('.js-card_properties_icons_pay');
 	charg = document.querySelector('.js-card_properties_icons_charg');
 	icons = [membership, pay, charg];
-	images = ['/img/cardImg/charger station-03.svg', '/img/cardImg/Solar Energy Car Charger.svg', '/img/cardImg/Renewable Green Energy.svg'];
+	images = ['/img/cardImg/charger station-03.svg', '/img/cardImg/Renewable Green Energy.svg', '/img/cardImg/Solar Energy Car Charger.svg'];
 	initMap();
 	listenToLocationClick();
 	getLocation();

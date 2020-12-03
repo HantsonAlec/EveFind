@@ -39,7 +39,7 @@
 	--global-whitespace-lg: calc(var(--global-baseline) * 5); /*40*/
 	--global-whitespace-xl: calc(var(--global-baseline) * 6); /*48*/
 	/* Shadows */
-	--global-boxshadow: 0px 2px 6px #000000;
+	--global-boxshadow: 1px 5px 8px 1px #888888;
 	/* border radius */
 
 	/* transitions */
@@ -62,7 +62,8 @@
 html {
 	font-size: 16px;
 	line-height: 1.5;
-	font-family: 'Work Sans', sans-serif;
+	font-family: bilo, sans-serif;
+	font-style: normal;
 	box-sizing: border-box;
 	color: var(--color-front);
 	background-color: var(--color-back);
@@ -125,32 +126,31 @@ h2,
 h3 {
 	font-weight: 700;
 }
-
 h1 {
-	font-size: 36px;
-	line-height: 48px;
-	margin: 0 0 24px;
+	font-size: 3rem;
+	line-height: calc(var(--global-baseline) * 6);
+	margin: 0 0 var(--global-whitespace-lg);
 }
 
 h2 {
-	font-size: 32px;
-	line-height: 40px;
-	margin: 0 0 24px;
+	font-size: 2rem;
+	line-height: calc(var(--global-baseline) * 8);
+	margin: 0 0 var(--global-whitespace-lg);
 }
 
 h3 {
-	font-size: 26px;
-	line-height: 32px;
-	margin: 0 0 24px;
+	font-size: 1.625rem;
+	line-height: calc(var(--global-baseline) * 6);
+	margin: 0 0 var(--global-whitespace-md);
 }
 
 h4,
 h5,
 h6 {
-	font-size: 16px;
+	font-size: 1rem;
 	font-weight: 600;
-	line-height: 24px;
-	margin: 0 0 24px;
+	line-height: calc(var(--global-baseline) * 5);
+	margin: 0 0 var(--global-whitespace-md);
 }
 
 p,
@@ -160,12 +160,12 @@ dl,
 table,
 address,
 figure {
-	margin: 0 0 24px;
+	margin: 0 0 var(--global-whitespace-md);
 }
 
 ul,
 ol {
-	padding-left: 24px;
+	padding-left: var(--global-whitespace-sm);
 }
 
 li ul,
@@ -175,9 +175,9 @@ li ol {
 
 blockquote {
 	font-style: normal;
-	font-size: 23px;
-	line-height: 32px;
-	margin: 0 0 24px;
+	font-size: 1.4375rem;
+	line-height: 2rem;
+	margin: 0 0 var(--global-whitespace-sm);
 }
 
 blockquote * {
@@ -187,33 +187,34 @@ blockquote * {
 
 figcaption {
 	font-weight: 400;
-	font-size: 12px;
-	line-height: 16px;
-	margin-top: 8px;
+	font-size: 0.75rem;
+	line-height: 1rem;
+	margin-top: var(--global-baseline);
 }
 
 hr {
 	border: 0;
 	height: 1px;
 	background: LightGrey;
-	margin: 0 0 24px;
+	margin: 0 0 var(--global-whitespace-xs);
 }
 
 a {
-	color: red;
-	outline-color: red;
+	transition: all var(--transition-alpha);
+	color: var(--color-alpha);
+	outline-color: var(--color-alpha);
 	outline-width: medium;
 	outline-offset: 2px;
 }
 
 a:visited,
 a:active {
-	color: red;
+	/* color: var(--color-alpha); */
 }
 
 a:hover,
 a:focus {
-	color: red;
+	/* color: var(--color-alpha-light); */
 }
 
 label,
@@ -226,58 +227,12 @@ select {
 }
 
 input::placeholder {
-	color: gray;
+	color: var(--color-neutral-light);
 }
 
 /*------------------------------------*\
 #OBJECTS
 \*------------------------------------*/
-
-/*
-    Object: Button reset
-    ---
-    Small button reset object
-*/
-
-.o-button-reset {
-	border: none;
-	margin: 0;
-	padding: 0;
-	width: auto;
-	overflow: visible;
-	background: transparent;
-
-	/* inherit font & color from ancestor */
-	color: inherit;
-	font: inherit;
-
-	/* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
-	line-height: normal;
-
-	/* Corrects font smoothing for webkit */
-	-webkit-font-smoothing: inherit;
-	-moz-osx-font-smoothing: inherit;
-
-	/* Corrects inability to style clickable `input` types in iOS */
-	-webkit-appearance: none;
-}
-
-/*
-    Object: Hide accessible
-    ---
-    Accessibly hide any element
-*/
-
-.o-hide-accessible {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	padding: 0;
-	margin: -1px;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	border: 0;
-}
 
 /*------------------------------------*\
 #COMPONENTS
@@ -296,7 +251,7 @@ input::placeholder {
 	width: 3.5rem;
 	height: 3.5rem;
 	border-radius: 50px;
-	box-shadow: 1px 5px 8px 1px #888888;
+	box-shadow: var(--global-boxshadow);
 	border: none;
 	background-color: var(--color-neutral-light);
 	cursor: pointer;
@@ -397,7 +352,8 @@ input::placeholder {
 .c-card__title {
 	padding-left: var(--global-baseline);
 	position: absolute;
-	bottom: -5%;
+	bottom: 0;
+	margin: 0px;
 	font-size: 2rem;
 	line-height: 3rem;
 	width: 100%;
@@ -468,6 +424,9 @@ body,
 */
 .c-card_property_icon {
 	opacity: 0.2;
+}
+.c-material-icons {
+	margin-right: var(--global-baseline);
 }
 /*
     Component: Popup
@@ -545,7 +504,38 @@ body,
 		background: radial-gradient(50% 50%, #000 10%, rgba(255, 255, 255, 0) 100%);
 	}
 }
+/*
+    Component: location error
+    ---
+    Getting location went wrong
+*/
+.c-location__error {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	top: 50%;
+	left: 50%;
+	width: fit-content;
+	height: fit-content;
+	max-width: 90vw;
+	background-color: white;
+	box-shadow: var(--global-boxshadow);
+	border-radius: 20px;
+}
+.c-error__controls {
+	width: 100%;
+	display: flex;
 
+	justify-content: flex-end;
+}
+.c-close__error {
+	margin: var(--global-baseline);
+	border: none;
+	background: none;
+}
+.c-error__content {
+	margin: 0px var(--global-whitespace-sm) var(--global-baseline) var(--global-whitespace-sm);
+}
 /*------------------------------------*\
 #UTILITIES
 \*------------------------------------*/

@@ -12,7 +12,9 @@
 		<link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.3.3/dist/esri-leaflet-geocoder.css" integrity="sha512-IM3Hs+feyi40yZhDH6kV8vQMg4Fh20s9OzInIIAc4nx7aMYMfo+IenRUekoYsHZqGkREUgx0VvlEsgm7nCDW9g==" crossorigin="" />
 		<script src="https://unpkg.com/esri-leaflet-geocoder@2.3.3/dist/esri-leaflet-geocoder.js" integrity="sha512-HrFUyCEtIpxZloTgEKKMq4RFYhxjJkCiF5sDxuAokklOeZ68U2NPfh4MFtyIVWlsKtVbK5GD2/JzFyAfvT5ejA==" crossorigin=""></script>
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+		<link rel="icon" href="MyIcon.png" type="image/png" />
 		<script src="script/app.js"></script>
+		<script src="script/config.js"></script>
 		<link rel="stylesheet" href="css/screen.css" />
 		<title>EveFind</title>
 	</head>
@@ -32,15 +34,15 @@
 				<div class="c-card__main">
 					<div class="c-card_info">
 						<div class="c-card_info_address">
-							<span class="material-icons"> location_on </span>
+							<span class="material-icons c-material-icons"> location_on </span>
 							<p class="js-card_info_addressTitle"></p>
 						</div>
 						<div class="c-card_info_contact">
-							<span class="material-icons"> phone </span>
+							<span class="material-icons c-material-icons"> phone </span>
 							<p class="js-card_info_contact"></p>
 						</div>
 						<div class="c-card_info_type">
-							<span class="material-icons"> power </span>
+							<span class="material-icons c-material-icons"> power </span>
 							<p class="js-card_info_typeTitle"></p>
 						</div>
 					</div>
@@ -78,6 +80,17 @@
 			</svg>
 			<div class="c-loader__shadow"></div>
 			<p class="c-loader__text">We are getting you the best charging spots!</p>
+		</div>
+		<div class="c-modal js-location__error">
+			<div class="c-location__error">
+				<div class="c-error__controls">
+					<button class="js-closeError c-close__error"><span class="material-icons"> close </span></button>
+				</div>
+				<div class="c-error__content">
+					<h2>Oops sorry! We weren't able to get your location.</h2>
+					<p>Make sure your location is turned on.<br />You can still make a manual search or try again later!</p>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>
