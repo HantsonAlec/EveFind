@@ -2,7 +2,7 @@
 
 const provider = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
 const copyright = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a> &copy; <a href="https://www.freevector.com">FreeVector.com</a>';
-const API_KEY = '93eb5062-5ed9-4a66-83a6-b5189eb8e74f';
+const key = '93eb5062-5ed9-4a66-83a6-b5189eb8e74f';
 let myLocationBtn, navigateBtn, closeBtn, closeError, map, modal, layergroup, loader, locationError, card, cardTitle, content, cardAddress, cardType, cardContact, cardAvailable, cardComment, cardImage, membership, pay, charg;
 let icons,
 	images,
@@ -51,7 +51,7 @@ const listenToControlsClick = (latitude, longitude) => {
 //--------------------GET DATA FROM API--------------------
 const getAPI = async (lat, long) => {
 	const key = '93eb5062-5ed9-4a66-83a6-b5189eb8e74f';
-	const chargingStations = await fetch(`https://api.openchargemap.io/v3/poi/?key=${API_KEY}&latitude=${lat}&longitude=${long}&distance=20&distanceunit=KM`)
+	const chargingStations = await fetch(`https://api.openchargemap.io/v3/poi/?key=${key}&latitude=${lat}&longitude=${long}&distance=20&distanceunit=KM`)
 		.then((r) => r.json())
 		.catch((err) => console.error('An error occured ', err));
 	console.log(chargingStations);
