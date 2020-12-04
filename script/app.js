@@ -155,7 +155,10 @@ const chargerMarker = (chargingStation) => {
 	marker = L.marker(chargingCoords, { icon: chargerLocationIcon }).addTo(layergroup);
 	marker.addEventListener('click', function () {
 		content = '<p class="c-popup">' + chargingStation.AddressInfo.Title + '<span class="material-icons">keyboard_arrow_up</span></p>';
-		popup = L.popup().setLatLng([chargingStation.AddressInfo.Latitude, chargingStation.AddressInfo.Longitude]).setContent(content).openOn(map);
+		popup = L.popup({ offset: [-12, -16] })
+			.setLatLng([chargingStation.AddressInfo.Latitude, chargingStation.AddressInfo.Longitude])
+			.setContent(content)
+			.openOn(map);
 		listenToPopUpClick(chargingStation);
 	});
 };
