@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	pay = document.querySelector('.js-card_properties_icons_pay');
 	charg = document.querySelector('.js-card_properties_icons_charg');
 	icons = [membership, pay, charg];
-	images = ['/img/chargerstation-03.svg', '/img/RenewableGreenEnergy.svg', '/img/SolarEnergyCarCharger.svg'];
+	images = ['./img/chargerstation-03.svg', './img/RenewableGreenEnergy.svg', './img/SolarEnergyCarCharger.svg'];
 	initMap();
 	listenToLocationClick();
 	getLocation();
