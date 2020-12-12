@@ -1,0 +1,597 @@
+/*------------------------------------*\
+#FONTS
+\*------------------------------------*/
+
+/*------------------------------------*\
+#Variables
+\*------------------------------------*/
+
+:root {
+	/* colors */
+	--color-alpha: #77dd77;
+	--color--alpha-dark: #009d1e;
+
+	--color-neutral-light: #ffffff;
+	--color-neutral: #808495;
+	--color-neutral-dark: #000000;
+
+	--global-color-error: #ff3333;
+	--global-color-error-transparent: #ff3333bf;
+	--global-color-error-x-transparent: #ff33334d;
+
+	--global-input-hover-borderColor: var(--global-color-neutral-light);
+	--global-input-focus-borderColor: var(--global-color-alpha);
+
+	/* Whitespace */
+	--global-baseline: 8px;
+	--global-whitespace-xxs: var(--global-baseline);
+	--global-whitespace-xs: calc(var(--global-baseline) * 2); /*16*/
+	--global-whitespace-sm: calc(var(--global-baseline) * 3); /*24*/
+	--global-whitespace-md: calc(var(--global-baseline) * 4); /*32*/
+	--global-whitespace-lg: calc(var(--global-baseline) * 5); /*40*/
+	--global-whitespace-xl: calc(var(--global-baseline) * 6); /*48*/
+}
+
+/*------------------------------------*\
+#GENERIC
+\*------------------------------------*/
+
+/*
+    Generic: Page
+    ---
+    Global page styles + universal box-sizing:
+*/
+
+html {
+	font-size: 16px;
+	line-height: 1.5;
+	font-family: bilo, sans-serif;
+	font-style: normal;
+	color: var(--color-neutral-dark);
+	box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background-color: white;
+}
+/* html,
+body {
+	overflow: hidden;
+} */
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
+/*
+* Remove text-shadow in selection highlight:
+* https://twitter.com/miketaylr/status/12228805301
+*
+* Customize the background color to match your design.
+*/
+
+::-moz-selection {
+	background: var(--color-alpha);
+	color: white;
+	text-shadow: none;
+}
+
+::selection {
+	background: var(--color-alpha);
+	color: white;
+	text-shadow: none;
+}
+
+/*------------------------------------*\
+#Elements
+\*------------------------------------*/
+
+/*
+Elements: Images
+---
+Default markup for images to make them responsive
+*/
+
+img {
+	max-width: 100%;
+	vertical-align: top;
+}
+
+/*
+    Elements: typography
+    ---
+    Default markup for typographic elements
+*/
+
+h1,
+h2,
+h3 {
+	font-weight: 700;
+}
+h1 {
+	font-size: 3rem;
+	line-height: calc(var(--global-baseline) * 6);
+	margin: 0 0 var(--global-whitespace-lg);
+}
+
+h2 {
+	font-size: 2rem;
+	line-height: calc(var(--global-baseline) * 8);
+	margin: 0 0 var(--global-whitespace-lg);
+}
+
+h3 {
+	font-size: 1.625rem;
+	line-height: calc(var(--global-baseline) * 6);
+	margin: 0 0 var(--global-whitespace-md);
+}
+
+h4,
+h5,
+h6 {
+	font-size: 1rem;
+	font-weight: 600;
+	line-height: calc(var(--global-baseline) * 5);
+	margin: 0 0 var(--global-whitespace-md);
+}
+
+p,
+ol,
+ul,
+dl,
+table,
+address,
+figure {
+	margin: 0 0 var(--global-whitespace-md);
+}
+
+ul,
+ol {
+	padding-left: var(--global-whitespace-sm);
+}
+
+li ul,
+li ol {
+	margin-bottom: 0;
+}
+
+blockquote {
+	font-style: normal;
+	font-size: 1.4375rem;
+	line-height: 2rem;
+	margin: 0 0 var(--global-whitespace-sm);
+}
+
+blockquote * {
+	font-size: inherit;
+	line-height: inherit;
+}
+
+figcaption {
+	font-weight: 400;
+	font-size: 0.75rem;
+	line-height: 1rem;
+	margin-top: var(--global-baseline);
+}
+
+hr {
+	border: 0;
+	height: 1px;
+	background: LightGrey;
+	margin: 0 0 var(--global-whitespace-xs);
+}
+
+a {
+	transition: all var(--transition-alpha);
+	color: var(--color-alpha);
+	outline-color: var(--color-alpha);
+	outline-width: medium;
+	outline-offset: 2px;
+}
+
+a:visited,
+a:active {
+	/* color: var(--color-alpha); */
+}
+
+a:hover,
+a:focus {
+	/* color: var(--color-alpha-light); */
+}
+
+label,
+input {
+	display: block;
+}
+
+select {
+	width: 100%;
+}
+
+input::placeholder {
+	color: var(--color-neutral-light);
+}
+
+/*------------------------------------*\
+#COMPONENTS
+\*------------------------------------*/
+
+/*
+    Component: Main App
+    ---
+    Website main app
+*/
+
+@media (min-width: 1200px) {
+	.c-app__main {
+		display: grid;
+		min-height: 100vh;
+		grid-template-columns: 50% 50%;
+		position: relative;
+	}
+}
+.c-app__container {
+	display: flex;
+	align-items: center;
+}
+/*
+    Component: slogan
+    ---
+    Website slogan alpha color
+*/
+.c-app__slogan__coloured {
+	color: var(--color--alpha-dark);
+}
+/*
+    Component: info
+    ---
+    Website info content
+*/
+.c-app__info {
+	margin: var(--global-whitespace-sm);
+}
+.c-app__slogan {
+	margin-left: -8px;
+}
+/*
+    Component: phone
+    ---
+    Website info content
+*/
+.c-app__phone {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--color-alpha);
+}
+.c-app__phone-img {
+	height: 90vh;
+}
+/*
+    Component: paragraf
+    ---
+    Website info paragraf
+*/
+@media (min-width: 768px) {
+	.c-app__paragraf {
+		font-size: 2rem;
+	}
+	.c-app__slogan {
+		font-size: 5rem;
+		line-height: calc(var(--global-baseline) * 10);
+	}
+}
+.c-app__paragraf {
+	margin-top: var(--global-whitespace-lg);
+	font-size: 1.5rem;
+}
+.c-app__outro {
+	font-weight: 700;
+}
+/*
+    Component: email
+    ---
+    Website email sub
+*/
+.c-app__email-form {
+	border: 1px solid var(--label-color, var(--color-alpha));
+	border-radius: 3px;
+}
+.c-app__email-input {
+	outline: none;
+	height: 40px;
+	width: 100%;
+	border: none;
+	color: var(--color-neutral-dark);
+	transition: height 1s, width 1s;
+}
+.c-app__email-submit {
+	outline: none;
+	width: 100%;
+	background-color: var(--color-alpha);
+	border: none;
+	color: var(--color-neutral-light);
+	padding: var(--global-whitespace-xs) var(--global-whitespace-md);
+	text-align: center;
+	font-size: 1rem;
+	cursor: pointer;
+}
+@media (min-width: 768px) {
+	.c-app__email-form {
+		display: flex;
+		width: max-content;
+	}
+	.c-app__email-input {
+		height: auto;
+		width: 400px;
+	}
+	.c-app__email-submit {
+		width: auto;
+	}
+	.c-label {
+		width: 400px;
+	}
+}
+.c-app__email-form:focus-within {
+	border: 2px solid var(--label-color, var(--color--alpha-dark));
+}
+/*
+    Component: label
+    ---
+    Label for input
+*/
+.has-error {
+	--label-color: var(--global-color-error);
+	--input-borderColor: var(--global-input-error-borderColor);
+	--input-hover-borderColor: var(--global-input-error-borderColor);
+	--input-focus-borderColor: var(--global-input-error-borderColor);
+}
+.c-label {
+	margin-bottom: var(--global-baseline);
+	font-size: 0.875rem;
+	line-height: calc(var(--global-baseline) * 2);
+	color: var(--label-color, var(--global-label-color));
+}
+
+.c-label--option {
+	padding-bottom: 0;
+}
+
+.c-label__error-message {
+	font-weight: 600;
+	float: right;
+	display: none;
+}
+
+.c-label__error-message.is-visible {
+	display: inline;
+}
+@media (min-width: 768px) {
+	.is-done {
+		width: 0px;
+		margin-right: -4px;
+	}
+}
+.is-done {
+	height: 0px;
+	margin-bottom: -2px;
+}
+/*------------------------------------*\
+#UTILITIES
+\*------------------------------------*/
+
+/*
+    Utilities: color
+    ---
+    Utility classes to put specific colors onto elements
+*/
+
+.u-color-neutral {
+	color: var(--color-neutral);
+}
+
+.u-color-neutral-dark {
+	color: var(--color-neutral-dark);
+}
+
+/*
+    Utilities: spacing
+    ---
+    Utility classes to put specific margins and paddings onto elements
+*/
+
+.u-pt-clear {
+	padding-top: 0 !important;
+}
+
+.u-mb-clear {
+	margin-bottom: 0 !important;
+}
+
+.u-mb-xs {
+	margin-bottom: 4px !important;
+}
+
+.u-mb-sm {
+	margin-bottom: 8px !important;
+}
+
+.u-mb-md {
+	margin-bottom: 16px !important;
+}
+
+.u-mb-lg {
+	margin-bottom: 32px !important;
+}
+
+.u-mb-xl {
+	margin-bottom: 48px !important;
+}
+
+/*
+    Utilities: max-width
+    ---
+    Utility classes to put specific max widths onto elements
+*/
+
+.u-max-width-xs {
+	max-width: 27em !important;
+}
+
+.u-max-width-sm {
+	max-width: 39em !important;
+}
+
+.u-max-width-md {
+	max-width: 50em !important;
+}
+
+.u-max-width-lg {
+	max-width: 63.5em !important;
+}
+
+.u-max-width-none {
+	max-width: none !important;
+}
+
+/*
+    Utilities: align
+    ---
+    Utility classes align text or components
+*/
+
+.u-align-text-center {
+	text-align: center;
+}
+
+.u-align-center {
+	margin: 0 auto;
+}
+
+/*
+    Utilities: text
+    Utility classes to create smaller or bigger test
+*/
+
+.u-text-sm {
+	font-size: 14px;
+}
+
+/*------------------------------------*\
+#MEDIA
+\*------------------------------------*/
+
+/*
+    Media Queries
+    ---
+    EXAMPLE Media Queries for Responsive Design.
+    These examples override the primary ('mobile first') styles.
+    USE THEM INLINE!
+*/
+
+/* Extra small devices (portrait phones, less than 576px)
+No media query since this is the default in mobile first design
+*/
+
+/* Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {}
+*/
+
+/* Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {}
+*/
+
+/* HORIZONTAL */
+@media (min-width: 992px) {
+	.u-x-span-3-bp3 {
+		grid-column: span 3;
+	}
+	.u-x-span-4-bp3 {
+		grid-column: span 4;
+	}
+	.u-x-span-6-bp3 {
+		grid-column: span 6;
+	}
+	.u-x-span-8-bp3 {
+		grid-column: span 8;
+	}
+	.u-x-span-9-bp3 {
+		grid-column: span 9;
+	}
+}
+/*VERTICAL*/
+@media (min-width: 992px) {
+	.u-y-span-2-bp3 {
+		grid-column: span 2;
+	}
+}
+/* Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {}
+*/
+
+/*
+    Print styles.
+    ---
+    Inlined to avoid the additional HTTP request:
+    http://www.phpied.com/delay-loading-your-print-css/
+*/
+
+@media print {
+	*,
+	*:before,
+	*:after {
+		background: transparent !important;
+		color: #000 !important;
+		/* Black prints faster:
+        http://www.sanbeiji.com/archives/953 */
+		box-shadow: none !important;
+		text-shadow: none !important;
+	}
+	a,
+	a:visited {
+		text-decoration: underline;
+	}
+	a[href]:after {
+		content: ' (' attr(href) ')';
+	}
+	abbr[title]:after {
+		content: ' (' attr(title) ')';
+	}
+	/*
+    * Don't show links that are fragment identifiers,
+    * or use the `javascript:` pseudo protocol
+    */
+	a[href^='#']:after,
+	a[href^='javascript:']:after {
+		content: '';
+	}
+	pre {
+		white-space: pre-wrap !important;
+	}
+	pre,
+	blockquote {
+		border: 1px solid #999;
+		page-break-inside: avoid;
+	}
+	/*
+    * Printing Tables:
+    * http://css-discuss.incutio.com/wiki/Printing_Tables
+    */
+	thead {
+		display: table-header-group;
+	}
+	tr,
+	img {
+		page-break-inside: avoid;
+	}
+	p,
+	h2,
+	h3 {
+		orphans: 3;
+		widows: 3;
+	}
+	h2,
+	h3 {
+		page-break-after: avoid;
+	}
+}
