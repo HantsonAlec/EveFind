@@ -416,6 +416,7 @@ body,
 .c-map {
 	height: 100%;
 	width: 100%;
+	height: -webkit-fill-available;
 }
 
 /*
