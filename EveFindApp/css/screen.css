@@ -464,14 +464,14 @@ body,
 .c-loader {
 	height: 5rem;
 	animation-name: bounce;
-	animation-timing-function: linear;
+	animation-timing-function: ease-in-out;
 	transform: translate(-50%, -50%);
 	animation-duration: 1.5s;
 	animation-iteration-count: infinite;
 }
 .c-loader__shadow {
 	animation-name: shadow;
-	animation-timing-function: linear;
+	animation-timing-function: ease-in-out;
 	animation-duration: 1.5s;
 	animation-iteration-count: infinite;
 	background: radial-gradient(50% 50%, #000 0%, rgba(255, 255, 255, 0) 100%);
