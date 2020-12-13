@@ -411,13 +411,8 @@ input::placeholder {
     ---
     Website map
 */
-body {
-	min-height: 100vh;
-	min-height: -webkit-fill-available;
-}
-html {
-	height: -webkit-fill-available;
-}
+html,
+body,
 .c-map {
 	height: 100%;
 	width: 100%;
