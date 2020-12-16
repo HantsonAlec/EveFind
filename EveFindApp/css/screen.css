@@ -89,13 +89,13 @@ html {
 */
 
 ::-moz-selection {
-	background: var(--global-color-alpha);
+	background: var(--color--alpha-dark);
 	color: white;
 	text-shadow: none;
 }
 
 ::selection {
-	background: var(--global-color-alpha);
+	background: var(--color--alpha-dark);
 	color: white;
 	text-shadow: none;
 }
