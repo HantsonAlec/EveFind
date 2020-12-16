@@ -310,7 +310,7 @@ input::placeholder {
 }
 .c-app__email-input {
 	outline: none;
-	height: 40px;
+	height: 2.5rem;
 	width: 100%;
 	border: none;
 	color: var(--color-neutral-dark);
@@ -334,13 +334,13 @@ input::placeholder {
 	}
 	.c-app__email-input {
 		height: auto;
-		width: 400px;
+		width: 25rem;
 	}
 	.c-app__email-submit {
 		width: auto;
 	}
 	.c-label {
-		width: 400px;
+		width: 25rem;
 	}
 }
 .c-app__email-form:focus-within {
@@ -379,12 +379,12 @@ input::placeholder {
 }
 @media (min-width: 768px) {
 	.is-done {
-		width: 0px;
+		width: 0rem;
 		margin-right: -0.25rem;
 	}
 }
 .is-done {
-	height: 0px;
+	height: 0rem;
 	margin-bottom: -0.1rem;
 }
 /*------------------------------------*\
