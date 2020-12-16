@@ -50,24 +50,7 @@ const getDOMElements = function () {
 	email.input = document.querySelector('.js-email-input');
 	email.field = document.querySelector('.js-email-field');
 
-	// Optional
-	// remember.label = document.querySelector('.js-remember-label');
-	// remember.errorMessage = null; // Currently not available
-	// remember.field = document.querySelector('.js-remember-input');
-
 	signInButton = document.querySelector('.js-sub-button');
-
-	// Check jezelf; hover over de gelogde DOM elementen in de console.
-	// console.log(
-	// 	'email',
-	// 	email,
-	// 	'password',
-	// 	password,
-	// 	'remember',
-	// 	remember,
-	// 	'button',
-	// 	signInButton
-	// );
 };
 
 const enableListeners = function () {

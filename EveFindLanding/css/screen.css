@@ -8,8 +8,8 @@
 
 :root {
 	/* colors */
-	--color-alpha: #77dd77;
-	--color--alpha-dark: #009d1e;
+	--global-color-alpha: #77dd77;
+	--global-color--alpha-dark: #009d1e;
 
 	--color-neutral-light: #ffffff;
 	--color-neutral: #808495;
@@ -52,7 +52,7 @@ html {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	background-color: white;
-	border-top: 0.5rem solid var(--color-alpha);
+	border-top: 0.5rem solid var(--global-color-alpha);
 }
 /* html,
 body {
@@ -72,13 +72,13 @@ body {
 */
 
 ::-moz-selection {
-	background: var(--color-alpha);
+	background: var(--global-color-alpha);
 	color: white;
 	text-shadow: none;
 }
 
 ::selection {
-	background: var(--color-alpha);
+	background: var(--global-color-alpha);
 	color: white;
 	text-shadow: none;
 }
@@ -184,20 +184,20 @@ hr {
 
 a {
 	transition: all var(--transition-alpha);
-	color: var(--color-alpha);
-	outline-color: var(--color-alpha);
+	color: var(--global-color-alpha);
+	outline-color: var(--global-color-alpha);
 	outline-width: medium;
 	outline-offset: 2px;
 }
 
 a:visited,
 a:active {
-	/* color: var(--color-alpha); */
+	/* color: var(--global-color-alpha); */
 }
 
 a:hover,
 a:focus {
-	/* color: var(--color-alpha-light); */
+	/* color: var(--global-color-alpha-light); */
 }
 
 label,
@@ -244,7 +244,7 @@ input::placeholder {
     Website slogan alpha color
 */
 .c-app__slogan__coloured {
-	color: var(--color--alpha-dark);
+	color: var(--global-color--alpha-dark);
 }
 /*
     Component: info
@@ -273,7 +273,7 @@ input::placeholder {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: var(--color-alpha);
+	background-color: var(--global-color-alpha);
 }
 .c-app__phone-img {
 	height: 90vh;
@@ -305,7 +305,7 @@ input::placeholder {
     Website email sub
 */
 .c-app__email-form {
-	border: 1px solid var(--label-color, var(--color-alpha));
+	border: 1px solid var(--label-color, var(--global-color-alpha));
 	border-radius: 3px;
 }
 .c-app__email-input {
@@ -319,7 +319,7 @@ input::placeholder {
 .c-app__email-submit {
 	outline: none;
 	width: 100%;
-	background-color: var(--color-alpha);
+	background-color: var(--global-color-alpha);
 	border: none;
 	color: var(--color-neutral-light);
 	padding: var(--global-whitespace-xs) var(--global-whitespace-md);
@@ -344,7 +344,7 @@ input::placeholder {
 	}
 }
 .c-app__email-form:focus-within {
-	border: 2px solid var(--label-color, var(--color--alpha-dark));
+	border: 2px solid var(--label-color, var(--global-color--alpha-dark));
 }
 /*
     Component: label

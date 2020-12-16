@@ -8,20 +8,12 @@
 
 :root {
 	/* colors */
-	--color-light: #cce7ff;
-	--color-dark: #0f3557;
-	--color-front: var(--color-dark);
-	--color-back: var(--color-light);
-	/* opacity */
-	--muted-opacity: 0.6;
-	/* transitions */
-	/* colors */
-	--color-alpha: #77dd77;
-	--color--alpha-dark: #009d1e;
+	--global-color-alpha: #77dd77;
+	--global-color--alpha-dark: #009d1e;
 
-	--color-neutral-light: #ffffff;
-	--color-neutral: #808495;
-	--color-neutral-dark: #000000;
+	--global-color-neutral-light: #ffffff;
+	--global-color-neutral: #808495;
+	--global-color-neutral-dark: #000000;
 
 	--global-color-error: #ff3333;
 	--global-color-error-transparent: #ff3333bf;
@@ -45,10 +37,7 @@
 	/* transitions */
 	--transition-alpha: 0.1s;
 }
-.is-night {
-	--color-front: var(--color-light);
-	--color-back: var(--color-dark);
-}
+
 /*------------------------------------*\
 #GENERIC
 \*------------------------------------*/
@@ -89,13 +78,13 @@ html {
 */
 
 ::-moz-selection {
-	background: var(--color--alpha);
+	background: var(--global-color-alpha);
 	color: white;
 	text-shadow: none;
 }
 
 ::selection {
-	background: var(--color--alpha);
+	background: var(--global-color-alpha);
 	color: white;
 	text-shadow: none;
 }
@@ -201,20 +190,20 @@ hr {
 
 a {
 	transition: all var(--transition-alpha);
-	color: var(--color-alpha);
-	outline-color: var(--color-alpha);
+	color: var(--global-color-alpha);
+	outline-color: var(--global-color-alpha);
 	outline-width: medium;
 	outline-offset: 2px;
 }
 
 a:visited,
 a:active {
-	/* color: var(--color-alpha); */
+	/* color: var(--global-color-alpha); */
 }
 
 a:hover,
 a:focus {
-	/* color: var(--color-alpha-light); */
+	/* color: var(--global-color-alpha-light); */
 }
 
 label,
@@ -227,7 +216,7 @@ select {
 }
 
 input::placeholder {
-	color: var(--color-neutral-light);
+	color: var(--global-color-neutral-light);
 }
 
 /*------------------------------------*\
@@ -253,7 +242,7 @@ input::placeholder {
 	border-radius: 50px;
 	box-shadow: var(--global-boxshadow);
 	border: none;
-	background-color: var(--color-neutral-light);
+	background-color: var(--global-color-neutral-light);
 	cursor: pointer;
 }
 
@@ -318,7 +307,7 @@ input::placeholder {
 }
 .c-controls_icon {
 	cursor: pointer;
-	color: var(--color-neutral-light);
+	color: var(--global-color-neutral-light);
 }
 /*
     Component: card header
@@ -357,7 +346,7 @@ input::placeholder {
 	font-size: 2rem;
 	line-height: 3rem;
 	width: 100%;
-	color: var(--color-neutral-light);
+	color: var(--global-color-neutral-light);
 	backdrop-filter: blur(8px);
 	-webkit-backdrop-filter: blur(8px);
 	background-color: rgba(0, 0, 0, 0.4);
@@ -391,7 +380,7 @@ input::placeholder {
     Chargingstation card properties
 */
 .c-app__slogan__coloured {
-	color: var(--color--alpha-dark);
+	color: var(--global-color--alpha-dark);
 }
 .c-card_properties {
 	text-align: center;
@@ -453,7 +442,7 @@ body,
 	left: 50%;
 	width: 100vw;
 	height: 100vh;
-	background-color: var(--color-neutral-light);
+	background-color: var(--global-color-neutral-light);
 	transform: translate(-50%, -50%);
 	z-index: 1000;
 	display: flex;
