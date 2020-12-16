@@ -380,12 +380,12 @@ input::placeholder {
 @media (min-width: 768px) {
 	.is-done {
 		width: 0px;
-		margin-right: -4px;
+		margin-right: -0.25rem;
 	}
 }
 .is-done {
 	height: 0px;
-	margin-bottom: -2px;
+	margin-bottom: -0.1rem;
 }
 /*------------------------------------*\
 #UTILITIES
