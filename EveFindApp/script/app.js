@@ -135,7 +135,7 @@ const showResult = (chargingStations) => {
 	loader.style.opacity = '0';
 	setTimeout(function () {
 		loader.style.display = 'none';
-	}, 1500);
+	}, 1000);
 	chargingStations.forEach((chargingStation) => {
 		chargerMarker(chargingStation);
 	});

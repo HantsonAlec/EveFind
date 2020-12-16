@@ -436,7 +436,7 @@ body,
 */
 .c-loading-screen {
 	opacity: 1;
-	transition: opacity 1.5s ease;
+	transition: opacity 1s ease;
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -485,19 +485,19 @@ body,
 }
 @keyframes shadow {
 	0% {
-		background: radial-gradient(50% 50%, #000 10%, rgba(255, 255, 255, 0) 100%);
+		background: radial-gradient(50% 50%, #000 20%, rgba(255, 255, 255, 0) 100%);
 	}
 	25% {
-		background: radial-gradient(50% 50%, #000 5%, rgba(255, 255, 255, 0) 100%);
+		background: radial-gradient(50% 50%, #000 10%, rgba(255, 255, 255, 0) 100%);
 	}
 	50% {
 		background: radial-gradient(50% 50%, #000 1%, rgba(255, 255, 255, 0) 100%);
 	}
 	75% {
-		background: radial-gradient(50% 50%, #000 5%, rgba(255, 255, 255, 0) 100%);
+		background: radial-gradient(50% 50%, #000 10%, rgba(255, 255, 255, 0) 100%);
 	}
 	100% {
-		background: radial-gradient(50% 50%, #000 10%, rgba(255, 255, 255, 0) 100%);
+		background: radial-gradient(50% 50%, #000 20%, rgba(255, 255, 255, 0) 100%);
 	}
 }
 /*
