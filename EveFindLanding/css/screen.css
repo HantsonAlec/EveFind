@@ -23,6 +23,7 @@
 	--global-input-focus-borderColor: var(--global-color-alpha);
 
 	/* Whitespace */
+	--global-baseline-negative: -8px;
 	--global-baseline: 8px;
 	--global-whitespace-xxs: var(--global-baseline);
 	--global-whitespace-xs: calc(var(--global-baseline) * 2); /*16*/
@@ -256,12 +257,11 @@ input::placeholder {
 }
 .c-app__slogan {
 	text-align: center;
-	margin-left: -8px;
 }
 @media (min-width: 768px) {
 	.c-app__slogan {
 		text-align: start;
-		margin-left: -8px;
+		margin-left: var(--global-baseline-negative);
 	}
 }
 /*
