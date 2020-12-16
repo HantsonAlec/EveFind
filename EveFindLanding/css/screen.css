@@ -255,6 +255,7 @@ input::placeholder {
 	margin: var(--global-whitespace-sm);
 }
 .c-app__slogan {
+	text-align: center;
 	margin-left: -8px;
 }
 /*
