@@ -258,6 +258,12 @@ input::placeholder {
 	text-align: center;
 	margin-left: -8px;
 }
+@media (min-width: 768px) {
+	.c-app__slogan {
+		text-align: start;
+		margin-left: -8px;
+	}
+}
 /*
     Component: phone
     ---
